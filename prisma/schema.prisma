@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String    @default("USER") // USER or ADMIN
+  accounts      Account[]
+  sessions      Session[]
+  images        Image[]
+  generations   CaptionGeneration[]
+  feedbacks     CaptionFeedback[]
+  auditLogs     AuditLog[]
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Image {
+  id          String   @id @default(cuid())
+  url         String
+  filename    String
+  size        Int
+  mimeType    String
+  width       Int?
+  height      Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  generations CaptionGeneration[]
+}
+
+model CaptionGeneration {
+  id                  String   @id @default(cuid())
+  imageId             String
+  userId              String
+  purpose             String
+  language            String
+  detailLevel         String
+  candidateCaption    String
+  finalCaption        String?
+  verificationEnabled Boolean  @default(true)
+  provider            String
+  model               String
+  processingTimeMs    Int?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  image               Image    @relation(fields: [imageId], references: [id], onDelete: Cascade)
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  visualEvidence      VisualEvidence?
+  verificationResult  VerificationResult?
+  feedbacks           CaptionFeedback[]
+}
+
+model VisualEvidence {
+  id                  String   @id @default(cuid())
+  generationId        String   @unique
+  data                String   // JSON string storing the evidence schema
+  createdAt           DateTime @default(now())
+  
+  generation          CaptionGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
+}
+
+model VerificationResult {
+  id                  String   @id @default(cuid())
+  generationId        String   @unique
+  overallScore        Float
+  unsupportedClaims   Int
+  uncertainClaims     Int
+  createdAt           DateTime @default(now())
+  
+  generation          CaptionGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
+  claims              VerificationClaim[]
+}
+
+model VerificationClaim {
+  id                   String   @id @default(cuid())
+  verificationResultId String
+  type                 String   // OBJECT, ATTRIBUTE, ACTION, RELATIONSHIP, OTHER
+  text                 String
+  isSupported          Boolean
+  confidence           Float
+  reasoning            String?
+  
+  verificationResult   VerificationResult @relation(fields: [verificationResultId], references: [id], onDelete: Cascade)
+}
+
+model CaptionFeedback {
+  id                  String   @id @default(cuid())
+  generationId        String
+  userId              String
+  isHelpful           Boolean
+  issueTypes          String?  // Comma separated list
+  comment             String?
+  createdAt           DateTime @default(now())
+  
+  generation          CaptionGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String
+  details     String?
+  createdAt   DateTime @default(now())
+  
+  user        User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}
