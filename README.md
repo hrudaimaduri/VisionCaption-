@@ -38,7 +38,7 @@ VisionCaption+ is a specialized image-captioning platform designed to generate t
    # Change Prisma provider in schema.prisma to postgresql and update DATABASE_URL
    npx prisma db push
    ```
-   
+
    To run with the default SQLite setup (No Docker needed):
    ```bash
    # Ensure schema.prisma has provider = "sqlite"
@@ -57,6 +57,18 @@ VisionCaption+ is a specialized image-captioning platform designed to generate t
    - Upload any image
    - Try the "Safety" purpose with "Detailed" level to see the refinement process in action.
 
-## Connecting Real ML Model
+## Connecting Real ML Model (Phase 2)
 
-To connect the actual ML model, create `src/lib/ai/real-provider.ts` implementing the `VisionCaptionProvider` interface, and update `.env` to set `AI_PROVIDER=real`.
+VisionCaption+ now supports real caption generation using Google's Gemini 2.5 Flash model!
+
+To connect the actual ML model:
+1. In your `.env` file, change `AI_PROVIDER` to `"gemini"`.
+2. Add your server-side API key to `.env`: `GEMINI_API_KEY="your_api_key_here"`
+3. (Optional) Set the model version: `GEMINI_MODEL="gemini-2.5-flash"`
+
+**SECURITY WARNING:**
+Never commit your API key. `.env.local` or `.env` files containing secrets must be ignored by git.
+The API key is strictly used server-side in the generation API route.
+
+**FREE-TIER USAGE AWARENESS:**
+The current Google AI Studio project may have a limited free-tier quota. The application only calls the Gemini API when a user explicitly clicks "Generate & Verify". Do not create automated scripts that repeatedly call the real generation API.

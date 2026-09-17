@@ -13,8 +13,9 @@ export default function WorkspacePage() {
   const [purpose, setPurpose] = useState("General");
   const [language, setLanguage] = useState("English");
   const [detailLevel, setDetailLevel] = useState("Medium");
-  
-  const [status, setStatus] = useState<"idle" | "analyzing" | "generating" | "verifying" | "refining" | "complete">("idle");
+  const [inlineData, setInlineData] = useState<{ data: string; mimeType: string } | undefined>(undefined);
+
+  const [status, setStatus] = useState<"idle" | "analyzing" | "generating" | "verifying" | "refining">("idle");
   const [candidateCaption, setCandidateCaption] = useState<string>("");
   const [finalCaption, setFinalCaption] = useState<string>("");
   const [evidence, setEvidence] = useState<VisualEvidence | null>(null);
@@ -27,6 +28,19 @@ export default function WorkspacePage() {
     if (file) {
       const url = URL.createObjectURL(file);
       setImagePreview(url);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64Data = reader.result as string;
+        // Strip the data:image/...;base64, prefix for the raw base64 string
+        const base64Content = base64Data.split(',')[1];
+        setInlineData({
+          data: base64Content,
+          mimeType: file.type
+        });
+      };
+      reader.readAsDataURL(file);
+
       resetState();
     }
   };
@@ -41,13 +55,13 @@ export default function WorkspacePage() {
 
   const handleGenerate = async () => {
     if (!imagePreview) return;
-    
+
     // Reset state
     resetState();
-    
+
     // 1. Analyze
     setStatus("analyzing");
-    
+
     try {
       // In a real app we'd upload the image to storage first, then call our API.
       // Here we simulate the API call sequence for the demo.
@@ -58,42 +72,52 @@ export default function WorkspacePage() {
       });
       const evidenceData = await analyzeRes.json();
       setEvidence(evidenceData);
-      
+
       // 2. Generate
       setStatus("generating");
       const genRes = await fetch("/api/captions/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          purpose, 
-          language, 
+        body: JSON.stringify({
+          purpose,
+          language,
           detailLevel,
+          inlineData,
           evidence: evidenceData
         })
       });
+
+      if (!genRes.ok) {
+        const errData = await genRes.json().catch(() => ({}));
+        throw new Error(errData.message || "Generation failed to connect to AI provider");
+      }
+
       const { caption } = await genRes.json();
+      if (!caption) {
+        throw new Error("Received empty caption from generator");
+      }
       setCandidateCaption(caption);
-      
+
       // 3. Verify
       setStatus("verifying");
       const verifyRes = await fetch("/api/captions/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           caption,
           evidence: evidenceData
         })
       });
       const verificationData = await verifyRes.json();
       setVerification(verificationData);
-      
+
       // 4. Refine (if needed)
       if (verificationData.unsupportedClaims > 0) {
         setStatus("refining");
         const refineRes = await fetch("/api/captions/refine", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ 
+          body: JSON.stringify({
             caption,
             verification: verificationData,
             evidence: evidenceData,
@@ -105,13 +129,12 @@ export default function WorkspacePage() {
       } else {
         setFinalCaption(caption);
       }
-      
-      setStatus("complete");
-      
-    } catch (err) {
+
+    } catch (err: any) {
       console.error(err);
+      alert(err.message || "An error occurred during processing.");
+    } finally {
       setStatus("idle");
-      alert("An error occurred during processing.");
     }
   };
 
@@ -127,7 +150,7 @@ export default function WorkspacePage() {
             </CardHeader>
             <CardContent>
               {!imagePreview ? (
-                <div 
+                <div
                   className="border-2 border-dashed rounded-lg p-12 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-muted/50 transition-colors"
                   onClick={() => fileInputRef.current?.click()}
                 >
@@ -146,11 +169,11 @@ export default function WorkspacePage() {
                   </div>
                 </div>
               )}
-              <input 
-                type="file" 
-                ref={fileInputRef} 
-                className="hidden" 
-                accept="image/jpeg,image/png,image/webp" 
+              <input
+                type="file"
+                ref={fileInputRef}
+                className="hidden"
+                accept="image/jpeg,image/png,image/webp"
                 onChange={handleImageUpload}
               />
             </CardContent>
@@ -164,7 +187,7 @@ export default function WorkspacePage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Purpose</Label>
-                  <select 
+                  <select
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     value={purpose}
                     onChange={e => setPurpose(e.target.value)}
@@ -179,7 +202,7 @@ export default function WorkspacePage() {
                 </div>
                 <div className="space-y-2">
                   <Label>Language</Label>
-                  <select 
+                  <select
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     value={language}
                     onChange={e => setLanguage(e.target.value)}
@@ -192,7 +215,7 @@ export default function WorkspacePage() {
                 </div>
                 <div className="space-y-2">
                   <Label>Detail Level</Label>
-                  <select 
+                  <select
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     value={detailLevel}
                     onChange={e => setDetailLevel(e.target.value)}
@@ -211,9 +234,9 @@ export default function WorkspacePage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button 
-                className="w-full" 
-                size="lg" 
+              <Button
+                className="w-full"
+                size="lg"
                 disabled={!imagePreview || status !== "idle"}
                 onClick={handleGenerate}
               >
@@ -233,19 +256,19 @@ export default function WorkspacePage() {
             </Card>
           )}
 
-          {status !== "idle" && (
+          {(status !== "idle" || candidateCaption) && (
             <Card className="border-primary/50 shadow-md">
               <CardHeader className="bg-muted/30 pb-4 border-b">
                 <CardTitle className="text-lg flex justify-between items-center">
                   Pipeline Status
                   <span className="text-sm font-normal text-muted-foreground flex items-center gap-2">
-                    {status !== "complete" && <RefreshCw className="h-4 w-4 animate-spin text-primary" />}
-                    {status === "complete" ? "Finished" : "Working..."}
+                    {status !== "idle" && <RefreshCw className="h-4 w-4 animate-spin text-primary" />}
+                    {status === "idle" ? "Finished" : "Working..."}
                   </span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-6 space-y-6">
-                
+
                 {/* STATUS INDICATORS */}
                 <div className="space-y-2 text-sm font-medium">
                   <div className={`flex justify-between items-center p-2 rounded ${status === "analyzing" ? "bg-primary/10 text-primary" : evidence ? "text-muted-foreground" : "opacity-40"}`}>
@@ -284,7 +307,7 @@ export default function WorkspacePage() {
                             Score: {verification.overallScore}%
                           </span>
                         </div>
-                        
+
                         <div className="space-y-3">
                           {verification.claims.map((claim, idx) => (
                             <div key={idx} className="flex gap-2 items-start text-sm">

@@ -39,6 +39,10 @@ export interface VerificationResult {
 
 export interface GenerationInput {
   imageUrl: string;
+  inlineData?: {
+    data: string;
+    mimeType: string;
+  };
   purpose: string;
   language: string;
   detailLevel: string;
