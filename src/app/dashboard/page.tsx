@@ -112,25 +112,50 @@ export default function WorkspacePage() {
         })
       });
       const verificationData = await verifyRes.json();
+      const verifyData = verificationData;
       setVerification(verificationData);
 
       // 4. Refine (if needed)
-      if (verificationData.unsupportedClaims > 0) {
+      let finalCap = "";
+      if (verifyData.unsupportedClaims > 0 || verifyData.uncertainClaims > 0) {
         setStatus("refining");
         const refineRes = await fetch("/api/captions/refine", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             caption,
-            verification: verificationData,
+            verification: verifyData,
             evidence: evidenceData,
             language
           })
         });
         const { refinedCaption } = await refineRes.json();
         setFinalCaption(refinedCaption);
+        finalCap = refinedCaption;
       } else {
         setFinalCaption(caption);
+        finalCap = caption;
+      }
+
+      // 5. Save Results
+      setStatus("saving" as any);
+      const saveRes = await fetch("/api/captions/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          inlineData,
+          purpose,
+          language,
+          detailLevel,
+          candidateCaption: caption,
+          finalCaption: finalCap,
+          evidence: evidenceData,
+          verification: verifyData
+        })
+      });
+
+      if (!saveRes.ok) {
+        console.warn("Failed to persist generation results");
       }
 
     } catch (err: any) {

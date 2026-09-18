@@ -9,3 +9,4 @@ tsconfig.tsbuildinfo
 
 test-db.js
 test-login.js
+public/uploads/

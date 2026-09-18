@@ -1,0 +1,1669 @@
+[
+  {
+    "image_id": "3385593926_d3e9c21170.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\3385593926_d3e9c21170.jpg",
+    "reference_captions": [
+      "The dogs are in the snow in front of a fence .",
+      "The dogs play on the snow .",
+      "Two brown dogs playfully fight in the snow .",
+      "Two brown dogs wrestle in the snow .",
+      "Two dogs playing in the snow ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "A",
+    "candidate_caption": "Two brown Doberman pinscher dogs are actively interacting on a snow-covered field. One dog is standing on its hind legs with its mouth open, while the other places a paw on its shoulder, also with an open mouth. A fence and a snow-covered hillside with trees are visible in the background.",
+    "visual_evidence": "NOT_APPLICABLE",
+    "verification_result": "NOT_APPLICABLE",
+    "refined_caption": "NOT_APPLICABLE",
+    "final_caption": "Two brown Doberman pinscher dogs are actively interacting on a snow-covered field. One dog is standing on its hind legs with its mouth open, while the other places a paw on its shoulder, also with an open mouth. A fence and a snow-covered hillside with trees are visible in the background.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:53:50.388Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "3385593926_d3e9c21170.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\3385593926_d3e9c21170.jpg",
+    "reference_captions": [
+      "The dogs are in the snow in front of a fence .",
+      "The dogs play on the snow .",
+      "Two brown dogs playfully fight in the snow .",
+      "Two brown dogs wrestle in the snow .",
+      "Two dogs playing in the snow ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "B",
+    "candidate_caption": "Two brown Doberman pinscher dogs are actively interacting on a snow-covered field. One dog is standing on its hind legs with its mouth open, while the other places a paw on its shoulder, also with an open mouth. A fence and a snow-covered hillside with trees are visible in the background.",
+    "visual_evidence": {
+      "objects": [
+        {
+          "name": "dog",
+          "attributes": [
+            "dark brown coat",
+            "cropped ears",
+            "cropped tail",
+            "standing on hind legs"
+          ]
+        },
+        {
+          "name": "dog",
+          "attributes": [
+            "dark brown coat",
+            "cropped ears",
+            "mouth open",
+            "right front paw on other dog's back",
+            "body stretched low"
+          ]
+        },
+        {
+          "name": "snow",
+          "attributes": [
+            "white",
+            "covering the ground",
+            "textured surface"
+          ]
+        },
+        {
+          "name": "fence",
+          "attributes": [
+            "green",
+            "metal",
+            "grid pattern",
+            "in the background"
+          ]
+        },
+        {
+          "name": "hill",
+          "attributes": [
+            "snow-covered",
+            "in the background",
+            "sloping upwards"
+          ]
+        },
+        {
+          "name": "tree",
+          "attributes": [
+            "bare branches",
+            "multiple",
+            "on the hill"
+          ]
+        },
+        {
+          "name": "sign",
+          "attributes": [
+            "white and blue",
+            "rectangular",
+            "attached to the fence"
+          ]
+        },
+        {
+          "name": "pole",
+          "attributes": [
+            "tall",
+            "thin",
+            "in the background behind the fence"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "subject": "the dog on the left",
+          "action": "is standing on its hind legs"
+        },
+        {
+          "subject": "the dog on the left",
+          "action": "has its front paws raised towards the other dog"
+        },
+        {
+          "subject": "the dog on the right",
+          "action": "has its mouth wide open"
+        },
+        {
+          "subject": "the dog on the right",
+          "action": "has its right front paw on the back of the dog on the left"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "the dog on the left",
+          "relation": "is near",
+          "object": "the dog on the right"
+        },
+        {
+          "subject": "the ground",
+          "relation": "is covered with",
+          "object": "snow"
+        },
+        {
+          "subject": "the fence",
+          "relation": "is behind",
+          "object": "the dogs"
+        },
+        {
+          "subject": "the trees",
+          "relation": "are on",
+          "object": "the hill"
+        },
+        {
+          "subject": "the hill",
+          "relation": "is behind",
+          "object": "the fence"
+        },
+        {
+          "subject": "the sign",
+          "relation": "is attached to",
+          "object": "the fence"
+        },
+        {
+          "subject": "the pole",
+          "relation": "is behind",
+          "object": "the fence"
+        }
+      ],
+      "uncertain": [
+        "The specific breed of the dogs, although they share characteristics consistent with Doberman Pinschers.",
+        "The exact nature of the interaction between the dogs (e.g., playful nipping, barking, mock fighting)."
+      ]
+    },
+    "verification_result": {
+      "overallScore": 50,
+      "unsupportedClaims": 1,
+      "uncertainClaims": 3,
+      "claims": [
+        {
+          "type": "OBJECT",
+          "text": "Two brown Doberman pinscher dogs",
+          "status": "uncertain",
+          "confidence": 0.7,
+          "evidence": "objects, uncertain",
+          "reasoning": "The visual evidence confirms 'two dogs' with 'dark brown coat'. However, the 'uncertain' section explicitly states that 'The specific breed of the dogs' is uncertain, despite characteristics consistent with Doberman Pinschers."
+        },
+        {
+          "type": "ACTION",
+          "text": "are actively interacting",
+          "status": "supported",
+          "confidence": 0.9,
+          "evidence": "actions, relationships, objects",
+          "reasoning": "The evidence details specific actions such as one dog 'standing on its hind legs' and 'front paws raised towards the other dog', while 'the other has its right front paw on the back of the dog on the left' and 'has its mouth wide open', clearly indicating active interaction. The 'uncertain' section refers to the 'exact nature' of interaction, not the fact of it being active."
+        },
+        {
+          "type": "SCENE",
+          "text": "on a snow-covered field",
+          "status": "uncertain",
+          "confidence": 0.6,
+          "evidence": "objects, relationships",
+          "reasoning": "The visual evidence explicitly states 'snow' is 'covering the ground' and 'the ground is covered with snow', supporting 'snow-covered'. However, the specific term 'field' is not supported; the evidence mentions 'ground' and a 'hill', but not a 'field'."
+        },
+        {
+          "type": "ACTION",
+          "text": "One dog is standing on its hind legs",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects, actions",
+          "reasoning": "The visual evidence explicitly lists 'standing on hind legs' as an attribute for one 'dog' object and as an 'action' for 'the dog on the left'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "with its mouth open (referring to the dog standing on hind legs)",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "objects, actions",
+          "reasoning": "The evidence states one dog is 'standing on hind legs'. It separately states 'mouth open' as an attribute for the *other* dog (the one placing the paw, referred to as 'the dog on the right'). There is no evidence connecting an open mouth to the dog standing on its hind legs."
+        },
+        {
+          "type": "ACTION",
+          "text": "while the other places a paw on its shoulder",
+          "status": "uncertain",
+          "confidence": 0.7,
+          "evidence": "objects, actions",
+          "reasoning": "The visual evidence supports the action of 'the other' dog placing a paw, specifically having its 'right front paw on the back of the dog on the left'. However, the caption specifies 'on its shoulder', while the evidence consistently states 'on the back', which is a broader area. This creates uncertainty regarding the precise location."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "also with an open mouth (referring to the dog placing the paw)",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects, actions",
+          "reasoning": "The visual evidence explicitly states that the second 'dog' object has the attribute 'mouth open' and that 'the dog on the right' (which places the paw) 'has its mouth wide open'."
+        },
+        {
+          "type": "SCENE",
+          "text": "A fence and a snow-covered hillside with trees are visible in the background.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects, relationships",
+          "reasoning": "The evidence explicitly confirms a 'fence' is 'in the background', a 'hill' is 'snow-covered' and 'in the background', and 'multiple' 'tree' objects are 'on the hill'. All elements and their background location are supported."
+        }
+      ]
+    },
+    "refined_caption": "NOT_APPLICABLE",
+    "final_caption": "Two brown Doberman pinscher dogs are actively interacting on a snow-covered field. One dog is standing on its hind legs with its mouth open, while the other places a paw on its shoulder, also with an open mouth. A fence and a snow-covered hillside with trees are visible in the background.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:53:50.388Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "3385593926_d3e9c21170.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\3385593926_d3e9c21170.jpg",
+    "reference_captions": [
+      "The dogs are in the snow in front of a fence .",
+      "The dogs play on the snow .",
+      "Two brown dogs playfully fight in the snow .",
+      "Two brown dogs wrestle in the snow .",
+      "Two dogs playing in the snow ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "C",
+    "candidate_caption": "Two brown Doberman pinscher dogs are actively interacting on a snow-covered field. One dog is standing on its hind legs with its mouth open, while the other places a paw on its shoulder, also with an open mouth. A fence and a snow-covered hillside with trees are visible in the background.",
+    "visual_evidence": {
+      "objects": [
+        {
+          "name": "dog",
+          "attributes": [
+            "dark brown coat",
+            "cropped ears",
+            "cropped tail",
+            "standing on hind legs"
+          ]
+        },
+        {
+          "name": "dog",
+          "attributes": [
+            "dark brown coat",
+            "cropped ears",
+            "mouth open",
+            "right front paw on other dog's back",
+            "body stretched low"
+          ]
+        },
+        {
+          "name": "snow",
+          "attributes": [
+            "white",
+            "covering the ground",
+            "textured surface"
+          ]
+        },
+        {
+          "name": "fence",
+          "attributes": [
+            "green",
+            "metal",
+            "grid pattern",
+            "in the background"
+          ]
+        },
+        {
+          "name": "hill",
+          "attributes": [
+            "snow-covered",
+            "in the background",
+            "sloping upwards"
+          ]
+        },
+        {
+          "name": "tree",
+          "attributes": [
+            "bare branches",
+            "multiple",
+            "on the hill"
+          ]
+        },
+        {
+          "name": "sign",
+          "attributes": [
+            "white and blue",
+            "rectangular",
+            "attached to the fence"
+          ]
+        },
+        {
+          "name": "pole",
+          "attributes": [
+            "tall",
+            "thin",
+            "in the background behind the fence"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "subject": "the dog on the left",
+          "action": "is standing on its hind legs"
+        },
+        {
+          "subject": "the dog on the left",
+          "action": "has its front paws raised towards the other dog"
+        },
+        {
+          "subject": "the dog on the right",
+          "action": "has its mouth wide open"
+        },
+        {
+          "subject": "the dog on the right",
+          "action": "has its right front paw on the back of the dog on the left"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "the dog on the left",
+          "relation": "is near",
+          "object": "the dog on the right"
+        },
+        {
+          "subject": "the ground",
+          "relation": "is covered with",
+          "object": "snow"
+        },
+        {
+          "subject": "the fence",
+          "relation": "is behind",
+          "object": "the dogs"
+        },
+        {
+          "subject": "the trees",
+          "relation": "are on",
+          "object": "the hill"
+        },
+        {
+          "subject": "the hill",
+          "relation": "is behind",
+          "object": "the fence"
+        },
+        {
+          "subject": "the sign",
+          "relation": "is attached to",
+          "object": "the fence"
+        },
+        {
+          "subject": "the pole",
+          "relation": "is behind",
+          "object": "the fence"
+        }
+      ],
+      "uncertain": [
+        "The specific breed of the dogs, although they share characteristics consistent with Doberman Pinschers.",
+        "The exact nature of the interaction between the dogs (e.g., playful nipping, barking, mock fighting)."
+      ]
+    },
+    "verification_result": {
+      "overallScore": 50,
+      "unsupportedClaims": 1,
+      "uncertainClaims": 3,
+      "claims": [
+        {
+          "type": "OBJECT",
+          "text": "Two brown Doberman pinscher dogs",
+          "status": "uncertain",
+          "confidence": 0.7,
+          "evidence": "objects, uncertain",
+          "reasoning": "The visual evidence confirms 'two dogs' with 'dark brown coat'. However, the 'uncertain' section explicitly states that 'The specific breed of the dogs' is uncertain, despite characteristics consistent with Doberman Pinschers."
+        },
+        {
+          "type": "ACTION",
+          "text": "are actively interacting",
+          "status": "supported",
+          "confidence": 0.9,
+          "evidence": "actions, relationships, objects",
+          "reasoning": "The evidence details specific actions such as one dog 'standing on its hind legs' and 'front paws raised towards the other dog', while 'the other has its right front paw on the back of the dog on the left' and 'has its mouth wide open', clearly indicating active interaction. The 'uncertain' section refers to the 'exact nature' of interaction, not the fact of it being active."
+        },
+        {
+          "type": "SCENE",
+          "text": "on a snow-covered field",
+          "status": "uncertain",
+          "confidence": 0.6,
+          "evidence": "objects, relationships",
+          "reasoning": "The visual evidence explicitly states 'snow' is 'covering the ground' and 'the ground is covered with snow', supporting 'snow-covered'. However, the specific term 'field' is not supported; the evidence mentions 'ground' and a 'hill', but not a 'field'."
+        },
+        {
+          "type": "ACTION",
+          "text": "One dog is standing on its hind legs",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects, actions",
+          "reasoning": "The visual evidence explicitly lists 'standing on hind legs' as an attribute for one 'dog' object and as an 'action' for 'the dog on the left'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "with its mouth open (referring to the dog standing on hind legs)",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "objects, actions",
+          "reasoning": "The evidence states one dog is 'standing on hind legs'. It separately states 'mouth open' as an attribute for the *other* dog (the one placing the paw, referred to as 'the dog on the right'). There is no evidence connecting an open mouth to the dog standing on its hind legs."
+        },
+        {
+          "type": "ACTION",
+          "text": "while the other places a paw on its shoulder",
+          "status": "uncertain",
+          "confidence": 0.7,
+          "evidence": "objects, actions",
+          "reasoning": "The visual evidence supports the action of 'the other' dog placing a paw, specifically having its 'right front paw on the back of the dog on the left'. However, the caption specifies 'on its shoulder', while the evidence consistently states 'on the back', which is a broader area. This creates uncertainty regarding the precise location."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "also with an open mouth (referring to the dog placing the paw)",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects, actions",
+          "reasoning": "The visual evidence explicitly states that the second 'dog' object has the attribute 'mouth open' and that 'the dog on the right' (which places the paw) 'has its mouth wide open'."
+        },
+        {
+          "type": "SCENE",
+          "text": "A fence and a snow-covered hillside with trees are visible in the background.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects, relationships",
+          "reasoning": "The evidence explicitly confirms a 'fence' is 'in the background', a 'hill' is 'snow-covered' and 'in the background', and 'multiple' 'tree' objects are 'on the hill'. All elements and their background location are supported."
+        }
+      ]
+    },
+    "refined_caption": "Two dark brown dogs, possibly Doberman Pinschers, are actively interacting on snow-covered ground. One dog is standing on its hind legs, while the other places a paw on its back and has its mouth open. A fence and a snow-covered hillside with trees are visible in the background.",
+    "final_caption": "Two dark brown dogs, possibly Doberman Pinschers, are actively interacting on snow-covered ground. One dog is standing on its hind legs, while the other places a paw on its back and has its mouth open. A fence and a snow-covered hillside with trees are visible in the background.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:53:50.388Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "2677656448_6b7e7702af.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\2677656448_6b7e7702af.jpg",
+    "reference_captions": [
+      "a brown and white dog swimming towards some in the pool",
+      "A dog in a swimming pool swims toward sombody we cannot see .",
+      "A dog swims in a pool near a person .",
+      "Small dog is paddling through the water in a pool .",
+      "The small brown and white dog is in the pool ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "A",
+    "candidate_caption": "A small brown and white dog swims in a blue pool with its head above the water. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "visual_evidence": "NOT_APPLICABLE",
+    "verification_result": "NOT_APPLICABLE",
+    "refined_caption": "NOT_APPLICABLE",
+    "final_caption": "A small brown and white dog swims in a blue pool with its head above the water. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:54:53.839Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "2677656448_6b7e7702af.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\2677656448_6b7e7702af.jpg",
+    "reference_captions": [
+      "a brown and white dog swimming towards some in the pool",
+      "A dog in a swimming pool swims toward sombody we cannot see .",
+      "A dog swims in a pool near a person .",
+      "Small dog is paddling through the water in a pool .",
+      "The small brown and white dog is in the pool ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "B",
+    "candidate_caption": "A small brown and white dog swims in a blue pool with its head above the water. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "visual_evidence": {
+      "objects": [
+        {
+          "name": "dog",
+          "attributes": [
+            "brown and white fur",
+            "partially submerged"
+          ]
+        },
+        {
+          "name": "person",
+          "attributes": [
+            "partially submerged",
+            "wearing black shorts",
+            "wearing yellow shirt",
+            "visible torso",
+            "visible arm",
+            "visible hand"
+          ]
+        },
+        {
+          "name": "another person",
+          "attributes": [
+            "partially submerged",
+            "visible foot",
+            "visible hand"
+          ]
+        },
+        {
+          "name": "water",
+          "attributes": [
+            "blue",
+            "rippled surface"
+          ]
+        },
+        {
+          "name": "pool",
+          "attributes": [
+            "blue liner"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "subject": "dog",
+          "action": "is swimming"
+        },
+        {
+          "subject": "person",
+          "action": "is in water"
+        },
+        {
+          "subject": "another person",
+          "action": "is in water"
+        },
+        {
+          "subject": "person",
+          "action": "has hand near dog's head"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "dog",
+          "relation": "is in",
+          "object": "water"
+        },
+        {
+          "subject": "person",
+          "relation": "is in",
+          "object": "water"
+        },
+        {
+          "subject": "another person",
+          "relation": "is in",
+          "object": "water"
+        },
+        {
+          "subject": "water",
+          "relation": "is in",
+          "object": "pool"
+        },
+        {
+          "subject": "dog",
+          "relation": "is near",
+          "object": "person"
+        }
+      ],
+      "uncertain": []
+    },
+    "verification_result": {
+      "overallScore": 86,
+      "unsupportedClaims": 1,
+      "uncertainClaims": 1,
+      "claims": [
+        {
+          "type": "OBJECT",
+          "text": "A dog",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].name: 'dog'",
+          "reasoning": "The visual evidence explicitly lists 'dog' as an object."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The dog has brown and white fur",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes: ['brown and white fur']",
+          "reasoning": "The visual evidence explicitly states the dog has 'brown and white fur'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The dog is small",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "No size attribute for 'dog' is provided.",
+          "reasoning": "The visual evidence does not contain any information regarding the size of the dog."
+        },
+        {
+          "type": "ACTION",
+          "text": "The dog swims",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "actions[0].subject: 'dog', actions[0].action: 'is swimming'",
+          "reasoning": "The visual evidence explicitly states 'dog is swimming'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The pool is blue",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[4].attributes: ['blue liner']",
+          "reasoning": "The visual evidence states the 'pool' object has a 'blue liner', supporting it being a blue pool."
+        },
+        {
+          "type": "RELATIONSHIP",
+          "text": "The dog is in the pool",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "relationships[0]: 'dog is in water', relationships[3]: 'water is in pool'",
+          "reasoning": "The evidence states the dog is in water, and the water is in the pool, logically placing the dog in the pool."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The dog's head is above the water",
+          "status": "uncertain",
+          "confidence": 0.5,
+          "evidence": "objects[0].attributes: ['partially submerged']",
+          "reasoning": "The evidence states the dog is 'partially submerged', which implies some part is above water, but does not specifically confirm that the head is the part above water."
+        },
+        {
+          "type": "OBJECT",
+          "text": "A person",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].name: 'person'",
+          "reasoning": "The visual evidence explicitly lists 'person' as an object."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The person is wearing a yellow shirt",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes: ['wearing yellow shirt']",
+          "reasoning": "The visual evidence explicitly states the person is 'wearing yellow shirt'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The person is wearing black shorts",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes: ['wearing black shorts']",
+          "reasoning": "The visual evidence explicitly states the person is 'wearing black shorts'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The person is partially submerged",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes: ['partially submerged']",
+          "reasoning": "The visual evidence explicitly states the person is 'partially submerged'."
+        },
+        {
+          "type": "RELATIONSHIP",
+          "text": "The person is in the pool",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "relationships[1]: 'person is in water', relationships[3]: 'water is in pool'",
+          "reasoning": "The evidence indicates the person is in water, and the water is in the pool, logically placing the person in the pool."
+        },
+        {
+          "type": "RELATIONSHIP",
+          "text": "The person is next to the dog",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "relationships[4]: 'dog is near person'",
+          "reasoning": "The visual evidence explicitly states the 'dog is near person', which supports the claim that the person is next to the dog."
+        },
+        {
+          "type": "ACTION",
+          "text": "The person has one hand near the dog's head",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "actions[3]: 'person has hand near dog's head'",
+          "reasoning": "The visual evidence explicitly states the 'person has hand near dog's head'."
+        }
+      ]
+    },
+    "refined_caption": "NOT_APPLICABLE",
+    "final_caption": "A small brown and white dog swims in a blue pool with its head above the water. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:54:53.839Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "2677656448_6b7e7702af.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\2677656448_6b7e7702af.jpg",
+    "reference_captions": [
+      "a brown and white dog swimming towards some in the pool",
+      "A dog in a swimming pool swims toward sombody we cannot see .",
+      "A dog swims in a pool near a person .",
+      "Small dog is paddling through the water in a pool .",
+      "The small brown and white dog is in the pool ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "C",
+    "candidate_caption": "A small brown and white dog swims in a blue pool with its head above the water. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "visual_evidence": {
+      "objects": [
+        {
+          "name": "dog",
+          "attributes": [
+            "brown and white fur",
+            "partially submerged"
+          ]
+        },
+        {
+          "name": "person",
+          "attributes": [
+            "partially submerged",
+            "wearing black shorts",
+            "wearing yellow shirt",
+            "visible torso",
+            "visible arm",
+            "visible hand"
+          ]
+        },
+        {
+          "name": "another person",
+          "attributes": [
+            "partially submerged",
+            "visible foot",
+            "visible hand"
+          ]
+        },
+        {
+          "name": "water",
+          "attributes": [
+            "blue",
+            "rippled surface"
+          ]
+        },
+        {
+          "name": "pool",
+          "attributes": [
+            "blue liner"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "subject": "dog",
+          "action": "is swimming"
+        },
+        {
+          "subject": "person",
+          "action": "is in water"
+        },
+        {
+          "subject": "another person",
+          "action": "is in water"
+        },
+        {
+          "subject": "person",
+          "action": "has hand near dog's head"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "dog",
+          "relation": "is in",
+          "object": "water"
+        },
+        {
+          "subject": "person",
+          "relation": "is in",
+          "object": "water"
+        },
+        {
+          "subject": "another person",
+          "relation": "is in",
+          "object": "water"
+        },
+        {
+          "subject": "water",
+          "relation": "is in",
+          "object": "pool"
+        },
+        {
+          "subject": "dog",
+          "relation": "is near",
+          "object": "person"
+        }
+      ],
+      "uncertain": []
+    },
+    "verification_result": {
+      "overallScore": 86,
+      "unsupportedClaims": 1,
+      "uncertainClaims": 1,
+      "claims": [
+        {
+          "type": "OBJECT",
+          "text": "A dog",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].name: 'dog'",
+          "reasoning": "The visual evidence explicitly lists 'dog' as an object."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The dog has brown and white fur",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes: ['brown and white fur']",
+          "reasoning": "The visual evidence explicitly states the dog has 'brown and white fur'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The dog is small",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "No size attribute for 'dog' is provided.",
+          "reasoning": "The visual evidence does not contain any information regarding the size of the dog."
+        },
+        {
+          "type": "ACTION",
+          "text": "The dog swims",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "actions[0].subject: 'dog', actions[0].action: 'is swimming'",
+          "reasoning": "The visual evidence explicitly states 'dog is swimming'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The pool is blue",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[4].attributes: ['blue liner']",
+          "reasoning": "The visual evidence states the 'pool' object has a 'blue liner', supporting it being a blue pool."
+        },
+        {
+          "type": "RELATIONSHIP",
+          "text": "The dog is in the pool",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "relationships[0]: 'dog is in water', relationships[3]: 'water is in pool'",
+          "reasoning": "The evidence states the dog is in water, and the water is in the pool, logically placing the dog in the pool."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The dog's head is above the water",
+          "status": "uncertain",
+          "confidence": 0.5,
+          "evidence": "objects[0].attributes: ['partially submerged']",
+          "reasoning": "The evidence states the dog is 'partially submerged', which implies some part is above water, but does not specifically confirm that the head is the part above water."
+        },
+        {
+          "type": "OBJECT",
+          "text": "A person",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].name: 'person'",
+          "reasoning": "The visual evidence explicitly lists 'person' as an object."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The person is wearing a yellow shirt",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes: ['wearing yellow shirt']",
+          "reasoning": "The visual evidence explicitly states the person is 'wearing yellow shirt'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The person is wearing black shorts",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes: ['wearing black shorts']",
+          "reasoning": "The visual evidence explicitly states the person is 'wearing black shorts'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The person is partially submerged",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes: ['partially submerged']",
+          "reasoning": "The visual evidence explicitly states the person is 'partially submerged'."
+        },
+        {
+          "type": "RELATIONSHIP",
+          "text": "The person is in the pool",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "relationships[1]: 'person is in water', relationships[3]: 'water is in pool'",
+          "reasoning": "The evidence indicates the person is in water, and the water is in the pool, logically placing the person in the pool."
+        },
+        {
+          "type": "RELATIONSHIP",
+          "text": "The person is next to the dog",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "relationships[4]: 'dog is near person'",
+          "reasoning": "The visual evidence explicitly states the 'dog is near person', which supports the claim that the person is next to the dog."
+        },
+        {
+          "type": "ACTION",
+          "text": "The person has one hand near the dog's head",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "actions[3]: 'person has hand near dog's head'",
+          "reasoning": "The visual evidence explicitly states the 'person has hand near dog's head'."
+        }
+      ]
+    },
+    "refined_caption": "A brown and white dog swims in a blue pool. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "final_caption": "A brown and white dog swims in a blue pool. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:54:53.839Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "311146855_0b65fdb169.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\311146855_0b65fdb169.jpg",
+    "reference_captions": [
+      "A man and a woman in festive costumes dancing .",
+      "A man and a woman with feathers on her head dance .",
+      "A man and a woman wearing decorative costumes and dancing in a crowd of onlookers .",
+      "one performer wearing a feathered headdress dancing with another performer in the streets",
+      "Two people are dancing with drums on the right and a crowd behind them ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "A",
+    "candidate_caption": "A man and a woman in vibrant carnival costumes dance in a street during the day. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers and drums are visible in the background.",
+    "visual_evidence": "NOT_APPLICABLE",
+    "verification_result": "NOT_APPLICABLE",
+    "refined_caption": "NOT_APPLICABLE",
+    "final_caption": "A man and a woman in vibrant carnival costumes dance in a street during the day. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers and drums are visible in the background.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:55:47.648Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "311146855_0b65fdb169.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\311146855_0b65fdb169.jpg",
+    "reference_captions": [
+      "A man and a woman in festive costumes dancing .",
+      "A man and a woman with feathers on her head dance .",
+      "A man and a woman wearing decorative costumes and dancing in a crowd of onlookers .",
+      "one performer wearing a feathered headdress dancing with another performer in the streets",
+      "Two people are dancing with drums on the right and a crowd behind them ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "B",
+    "candidate_caption": "A man and a woman in vibrant carnival costumes dance in a street during the day. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers and drums are visible in the background.",
+    "visual_evidence": {
+      "objects": [
+        {
+          "name": "man",
+          "attributes": [
+            "shirtless",
+            "muscular back",
+            "wearing green and yellow pants",
+            "wearing a green wristband"
+          ]
+        },
+        {
+          "name": "woman",
+          "attributes": [
+            "wearing a feathered headdress",
+            "wearing a sequined costume",
+            "wearing silver high heels",
+            "dark-skinned"
+          ]
+        },
+        {
+          "name": "feathered headdress",
+          "attributes": [
+            "green",
+            "yellow",
+            "blue accents",
+            "ornate"
+          ]
+        },
+        {
+          "name": "sequined costume",
+          "attributes": [
+            "green",
+            "blue",
+            "fringed",
+            "bikini-style top",
+            "bikini-style bottom"
+          ]
+        },
+        {
+          "name": "green and yellow pants",
+          "attributes": [
+            "striped",
+            "with braided cord belt"
+          ]
+        },
+        {
+          "name": "braided cord belt",
+          "attributes": [
+            "yellow",
+            "green"
+          ]
+        },
+        {
+          "name": "silver high heels",
+          "attributes": [
+            "platform style"
+          ]
+        },
+        {
+          "name": "white sneakers",
+          "attributes": []
+        },
+        {
+          "name": "green wristband",
+          "attributes": []
+        },
+        {
+          "name": "drum",
+          "attributes": [
+            "yellow",
+            "white",
+            "blue",
+            "red",
+            "cylindrical",
+            "multiple"
+          ]
+        },
+        {
+          "name": "drummer",
+          "attributes": [
+            "wearing red pants",
+            "holding drumsticks"
+          ]
+        },
+        {
+          "name": "bystanders",
+          "attributes": [
+            "in background",
+            "observing"
+          ]
+        },
+        {
+          "name": "camera",
+          "attributes": []
+        },
+        {
+          "name": "ground",
+          "attributes": [
+            "asphalt",
+            "grey"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "subject": "man",
+          "action": "is kneeling"
+        },
+        {
+          "subject": "woman",
+          "action": "is squatting"
+        },
+        {
+          "subject": "man",
+          "action": "is posing"
+        },
+        {
+          "subject": "woman",
+          "action": "is posing"
+        },
+        {
+          "subject": "man",
+          "action": "is flexing muscles"
+        },
+        {
+          "subject": "bystander",
+          "action": "is holding a camera"
+        },
+        {
+          "subject": "drummer",
+          "action": "is holding drumsticks"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "man",
+          "relation": "is facing away from",
+          "object": "viewer"
+        },
+        {
+          "subject": "woman",
+          "relation": "is facing towards",
+          "object": "viewer"
+        },
+        {
+          "subject": "man",
+          "relation": "is close to",
+          "object": "woman"
+        },
+        {
+          "subject": "feathered headdress",
+          "relation": "is on",
+          "object": "woman's head"
+        },
+        {
+          "subject": "sequined costume",
+          "relation": "is on",
+          "object": "woman's body"
+        },
+        {
+          "subject": "green and yellow pants",
+          "relation": "are on",
+          "object": "man"
+        },
+        {
+          "subject": "braided cord belt",
+          "relation": "is around",
+          "object": "man's waist"
+        },
+        {
+          "subject": "silver high heels",
+          "relation": "are on",
+          "object": "woman's feet"
+        },
+        {
+          "subject": "white sneakers",
+          "relation": "are on",
+          "object": "man's feet"
+        },
+        {
+          "subject": "green wristband",
+          "relation": "is on",
+          "object": "man's left wrist"
+        },
+        {
+          "subject": "drummer",
+          "relation": "is next to",
+          "object": "drum"
+        },
+        {
+          "subject": "bystanders",
+          "relation": "are in",
+          "object": "background"
+        },
+        {
+          "subject": "camera",
+          "relation": "is held by",
+          "object": "bystander"
+        }
+      ],
+      "uncertain": [
+        "The exact type of event (e.g., carnival, parade, performance).",
+        "Whether the drums are currently being played."
+      ]
+    },
+    "verification_result": {
+      "overallScore": 69,
+      "unsupportedClaims": 3,
+      "uncertainClaims": 1,
+      "claims": [
+        {
+          "type": "OBJECT",
+          "text": "A man is present.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].name: \"man\"",
+          "reasoning": "The visual evidence explicitly lists 'man' as an object present in the scene."
+        },
+        {
+          "type": "OBJECT",
+          "text": "A woman is present.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].name: \"woman\"",
+          "reasoning": "The visual evidence explicitly lists 'woman' as an object present in the scene."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The man and woman are in vibrant costumes.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes, objects[1].attributes, objects[2].attributes, objects[3].attributes",
+          "reasoning": "The detailed attributes for the man's pants (green and yellow) and the woman's feathered headdress (green, yellow, blue, ornate) and sequined costume (green, blue, fringed) strongly imply a vibrant aesthetic for their attire."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The costumes are carnival costumes.",
+          "status": "uncertain",
+          "confidence": 0.5,
+          "evidence": "uncertain[0]: \"The exact type of event (e.g., carnival, parade, performance).\"",
+          "reasoning": "While the attire is consistent with carnival costumes (feathered headdress, sequins, vibrant colors), the visual evidence explicitly lists 'The exact type of event (e.g., carnival, parade, performance)' as uncertain, preventing a definitive 'supported' status."
+        },
+        {
+          "type": "ACTION",
+          "text": "The man and woman dance.",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "actions array",
+          "reasoning": "The 'actions' array lists 'is kneeling', 'is squatting', and 'is posing' for the man and woman, but 'dance' is not mentioned."
+        },
+        {
+          "type": "SCENE",
+          "text": "The scene is in a street.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[13].name: \"ground\", attributes: [\"asphalt\", \"grey\"]",
+          "reasoning": "The visual evidence describes the ground as 'asphalt', which is a common characteristic of a street."
+        },
+        {
+          "type": "SCENE",
+          "text": "The scene is during the day.",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "N/A",
+          "reasoning": "The visual evidence does not provide any information regarding the time of day, such as 'daylight' or 'sunshine'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The man is shirtless.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes[0]: \"shirtless\"",
+          "reasoning": "The visual evidence explicitly states the man's attribute as 'shirtless'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The man wears green and yellow pants.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes[2]: \"wearing green and yellow pants\", relationships[5]",
+          "reasoning": "The visual evidence explicitly states the man is 'wearing green and yellow pants' and confirms the relationship of the pants being on the man."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The woman sports a feathered headdress.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes[0]: \"wearing a feathered headdress\", relationships[3]",
+          "reasoning": "The visual evidence explicitly states the woman is 'wearing a feathered headdress' and confirms the relationship of the headdress being on the woman's head."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The woman sports a sequined outfit.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes[1]: \"wearing a sequined costume\", relationships[4]",
+          "reasoning": "The visual evidence explicitly states the woman is 'wearing a sequined costume', and 'outfit' is synonymous with 'costume' in this context. The relationship confirms it's on her body."
+        },
+        {
+          "type": "OBJECT",
+          "text": "Onlookers are visible in the background.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[11].name: \"bystanders\", objects[11].attributes[0]: \"in background\", relationships[11]",
+          "reasoning": "The visual evidence lists 'bystanders' (synonymous with onlookers) with the attribute 'in background' and explicitly states the relationship that 'bystanders are in background'."
+        },
+        {
+          "type": "OBJECT",
+          "text": "Drums are visible in the background.",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "objects[9].name: \"drum\", relationships",
+          "reasoning": "While 'drum' is listed as an object, its location 'in the background' is not explicitly stated in the evidence for the drum itself or the drummer. Only 'bystanders' are explicitly placed in the background."
+        }
+      ]
+    },
+    "refined_caption": "NOT_APPLICABLE",
+    "final_caption": "A man and a woman in vibrant carnival costumes dance in a street during the day. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers and drums are visible in the background.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:55:47.648Z",
+    "model": "gemini-2.5-flash"
+  },
+  {
+    "image_id": "311146855_0b65fdb169.jpg",
+    "image_path": "C:\\Users\\pc\\Downloads\\Flickr8k\\311146855_0b65fdb169.jpg",
+    "reference_captions": [
+      "A man and a woman in festive costumes dancing .",
+      "A man and a woman with feathers on her head dance .",
+      "A man and a woman wearing decorative costumes and dancing in a crowd of onlookers .",
+      "one performer wearing a feathered headdress dancing with another performer in the streets",
+      "Two people are dancing with drums on the right and a crowd behind them ."
+    ],
+    "purpose": "General",
+    "language": "English",
+    "detail": "Medium",
+    "configuration": "C",
+    "candidate_caption": "A man and a woman in vibrant carnival costumes dance in a street during the day. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers and drums are visible in the background.",
+    "visual_evidence": {
+      "objects": [
+        {
+          "name": "man",
+          "attributes": [
+            "shirtless",
+            "muscular back",
+            "wearing green and yellow pants",
+            "wearing a green wristband"
+          ]
+        },
+        {
+          "name": "woman",
+          "attributes": [
+            "wearing a feathered headdress",
+            "wearing a sequined costume",
+            "wearing silver high heels",
+            "dark-skinned"
+          ]
+        },
+        {
+          "name": "feathered headdress",
+          "attributes": [
+            "green",
+            "yellow",
+            "blue accents",
+            "ornate"
+          ]
+        },
+        {
+          "name": "sequined costume",
+          "attributes": [
+            "green",
+            "blue",
+            "fringed",
+            "bikini-style top",
+            "bikini-style bottom"
+          ]
+        },
+        {
+          "name": "green and yellow pants",
+          "attributes": [
+            "striped",
+            "with braided cord belt"
+          ]
+        },
+        {
+          "name": "braided cord belt",
+          "attributes": [
+            "yellow",
+            "green"
+          ]
+        },
+        {
+          "name": "silver high heels",
+          "attributes": [
+            "platform style"
+          ]
+        },
+        {
+          "name": "white sneakers",
+          "attributes": []
+        },
+        {
+          "name": "green wristband",
+          "attributes": []
+        },
+        {
+          "name": "drum",
+          "attributes": [
+            "yellow",
+            "white",
+            "blue",
+            "red",
+            "cylindrical",
+            "multiple"
+          ]
+        },
+        {
+          "name": "drummer",
+          "attributes": [
+            "wearing red pants",
+            "holding drumsticks"
+          ]
+        },
+        {
+          "name": "bystanders",
+          "attributes": [
+            "in background",
+            "observing"
+          ]
+        },
+        {
+          "name": "camera",
+          "attributes": []
+        },
+        {
+          "name": "ground",
+          "attributes": [
+            "asphalt",
+            "grey"
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "subject": "man",
+          "action": "is kneeling"
+        },
+        {
+          "subject": "woman",
+          "action": "is squatting"
+        },
+        {
+          "subject": "man",
+          "action": "is posing"
+        },
+        {
+          "subject": "woman",
+          "action": "is posing"
+        },
+        {
+          "subject": "man",
+          "action": "is flexing muscles"
+        },
+        {
+          "subject": "bystander",
+          "action": "is holding a camera"
+        },
+        {
+          "subject": "drummer",
+          "action": "is holding drumsticks"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "man",
+          "relation": "is facing away from",
+          "object": "viewer"
+        },
+        {
+          "subject": "woman",
+          "relation": "is facing towards",
+          "object": "viewer"
+        },
+        {
+          "subject": "man",
+          "relation": "is close to",
+          "object": "woman"
+        },
+        {
+          "subject": "feathered headdress",
+          "relation": "is on",
+          "object": "woman's head"
+        },
+        {
+          "subject": "sequined costume",
+          "relation": "is on",
+          "object": "woman's body"
+        },
+        {
+          "subject": "green and yellow pants",
+          "relation": "are on",
+          "object": "man"
+        },
+        {
+          "subject": "braided cord belt",
+          "relation": "is around",
+          "object": "man's waist"
+        },
+        {
+          "subject": "silver high heels",
+          "relation": "are on",
+          "object": "woman's feet"
+        },
+        {
+          "subject": "white sneakers",
+          "relation": "are on",
+          "object": "man's feet"
+        },
+        {
+          "subject": "green wristband",
+          "relation": "is on",
+          "object": "man's left wrist"
+        },
+        {
+          "subject": "drummer",
+          "relation": "is next to",
+          "object": "drum"
+        },
+        {
+          "subject": "bystanders",
+          "relation": "are in",
+          "object": "background"
+        },
+        {
+          "subject": "camera",
+          "relation": "is held by",
+          "object": "bystander"
+        }
+      ],
+      "uncertain": [
+        "The exact type of event (e.g., carnival, parade, performance).",
+        "Whether the drums are currently being played."
+      ]
+    },
+    "verification_result": {
+      "overallScore": 69,
+      "unsupportedClaims": 3,
+      "uncertainClaims": 1,
+      "claims": [
+        {
+          "type": "OBJECT",
+          "text": "A man is present.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].name: \"man\"",
+          "reasoning": "The visual evidence explicitly lists 'man' as an object present in the scene."
+        },
+        {
+          "type": "OBJECT",
+          "text": "A woman is present.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].name: \"woman\"",
+          "reasoning": "The visual evidence explicitly lists 'woman' as an object present in the scene."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The man and woman are in vibrant costumes.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes, objects[1].attributes, objects[2].attributes, objects[3].attributes",
+          "reasoning": "The detailed attributes for the man's pants (green and yellow) and the woman's feathered headdress (green, yellow, blue, ornate) and sequined costume (green, blue, fringed) strongly imply a vibrant aesthetic for their attire."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The costumes are carnival costumes.",
+          "status": "uncertain",
+          "confidence": 0.5,
+          "evidence": "uncertain[0]: \"The exact type of event (e.g., carnival, parade, performance).\"",
+          "reasoning": "While the attire is consistent with carnival costumes (feathered headdress, sequins, vibrant colors), the visual evidence explicitly lists 'The exact type of event (e.g., carnival, parade, performance)' as uncertain, preventing a definitive 'supported' status."
+        },
+        {
+          "type": "ACTION",
+          "text": "The man and woman dance.",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "actions array",
+          "reasoning": "The 'actions' array lists 'is kneeling', 'is squatting', and 'is posing' for the man and woman, but 'dance' is not mentioned."
+        },
+        {
+          "type": "SCENE",
+          "text": "The scene is in a street.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[13].name: \"ground\", attributes: [\"asphalt\", \"grey\"]",
+          "reasoning": "The visual evidence describes the ground as 'asphalt', which is a common characteristic of a street."
+        },
+        {
+          "type": "SCENE",
+          "text": "The scene is during the day.",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "N/A",
+          "reasoning": "The visual evidence does not provide any information regarding the time of day, such as 'daylight' or 'sunshine'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The man is shirtless.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes[0]: \"shirtless\"",
+          "reasoning": "The visual evidence explicitly states the man's attribute as 'shirtless'."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The man wears green and yellow pants.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[0].attributes[2]: \"wearing green and yellow pants\", relationships[5]",
+          "reasoning": "The visual evidence explicitly states the man is 'wearing green and yellow pants' and confirms the relationship of the pants being on the man."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The woman sports a feathered headdress.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes[0]: \"wearing a feathered headdress\", relationships[3]",
+          "reasoning": "The visual evidence explicitly states the woman is 'wearing a feathered headdress' and confirms the relationship of the headdress being on the woman's head."
+        },
+        {
+          "type": "ATTRIBUTE",
+          "text": "The woman sports a sequined outfit.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[1].attributes[1]: \"wearing a sequined costume\", relationships[4]",
+          "reasoning": "The visual evidence explicitly states the woman is 'wearing a sequined costume', and 'outfit' is synonymous with 'costume' in this context. The relationship confirms it's on her body."
+        },
+        {
+          "type": "OBJECT",
+          "text": "Onlookers are visible in the background.",
+          "status": "supported",
+          "confidence": 1,
+          "evidence": "objects[11].name: \"bystanders\", objects[11].attributes[0]: \"in background\", relationships[11]",
+          "reasoning": "The visual evidence lists 'bystanders' (synonymous with onlookers) with the attribute 'in background' and explicitly states the relationship that 'bystanders are in background'."
+        },
+        {
+          "type": "OBJECT",
+          "text": "Drums are visible in the background.",
+          "status": "unsupported",
+          "confidence": 1,
+          "evidence": "objects[9].name: \"drum\", relationships",
+          "reasoning": "While 'drum' is listed as an object, its location 'in the background' is not explicitly stated in the evidence for the drum itself or the drummer. Only 'bystanders' are explicitly placed in the background."
+        }
+      ]
+    },
+    "refined_caption": "A man and a woman in vibrant costumes pose in a street. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers are visible in the background.",
+    "final_caption": "A man and a woman in vibrant costumes pose in a street. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers are visible in the background.",
+    "api_call_count": 4,
+    "retry_count": 0,
+    "errors": null,
+    "timestamp": "2026-09-18T09:55:47.648Z",
+    "model": "gemini-2.5-flash"
+  }
+]

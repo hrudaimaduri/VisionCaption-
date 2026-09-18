@@ -1,0 +1,170 @@
+[
+  {
+    "image_id": "3385593926_d3e9c21170.jpg",
+    "configuration": "A",
+    "target_caption": "Two brown Doberman pinscher dogs are actively interacting on a snow-covered field. One dog is standing on its hind legs with its mouth open, while the other places a paw on its shoulder, also with an open mouth. A fence and a snow-covered hillside with trees are visible in the background.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": null,
+      "evidence_match_rate": null
+    },
+    "refinement_stats": null
+  },
+  {
+    "image_id": "3385593926_d3e9c21170.jpg",
+    "configuration": "B",
+    "target_caption": "Two brown Doberman pinscher dogs are actively interacting on a snow-covered field. One dog is standing on its hind legs with its mouth open, while the other places a paw on its shoulder, also with an open mouth. A fence and a snow-covered hillside with trees are visible in the background.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": 0.125,
+      "evidence_match_rate": 0.5
+    },
+    "refinement_stats": null
+  },
+  {
+    "image_id": "3385593926_d3e9c21170.jpg",
+    "configuration": "C",
+    "target_caption": "Two dark brown dogs, possibly Doberman Pinschers, are actively interacting on snow-covered ground. One dog is standing on its hind legs, while the other places a paw on its back and has its mouth open. A fence and a snow-covered hillside with trees are visible in the background.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": 0.125,
+      "evidence_match_rate": 0.5
+    },
+    "refinement_stats": {
+      "wasRefined": true,
+      "claimsRemoved": 1,
+      "claimsRetained": 4,
+      "uncertainHandled": 3
+    }
+  },
+  {
+    "image_id": "2677656448_6b7e7702af.jpg",
+    "configuration": "A",
+    "target_caption": "A small brown and white dog swims in a blue pool with its head above the water. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": null,
+      "evidence_match_rate": null
+    },
+    "refinement_stats": null
+  },
+  {
+    "image_id": "2677656448_6b7e7702af.jpg",
+    "configuration": "B",
+    "target_caption": "A small brown and white dog swims in a blue pool with its head above the water. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": 0.07142857142857142,
+      "evidence_match_rate": 0.8571428571428571
+    },
+    "refinement_stats": null
+  },
+  {
+    "image_id": "2677656448_6b7e7702af.jpg",
+    "configuration": "C",
+    "target_caption": "A brown and white dog swims in a blue pool. A person, wearing a yellow shirt and black shorts, is partially submerged in the pool next to the dog, with one hand near its head.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": 0.07142857142857142,
+      "evidence_match_rate": 0.8571428571428571
+    },
+    "refinement_stats": {
+      "wasRefined": true,
+      "claimsRemoved": 1,
+      "claimsRetained": 12,
+      "uncertainHandled": 1
+    }
+  },
+  {
+    "image_id": "311146855_0b65fdb169.jpg",
+    "configuration": "A",
+    "target_caption": "A man and a woman in vibrant carnival costumes dance in a street during the day. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers and drums are visible in the background.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": null,
+      "evidence_match_rate": null
+    },
+    "refinement_stats": null
+  },
+  {
+    "image_id": "311146855_0b65fdb169.jpg",
+    "configuration": "B",
+    "target_caption": "A man and a woman in vibrant carnival costumes dance in a street during the day. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers and drums are visible in the background.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": 0.23076923076923078,
+      "evidence_match_rate": 0.6923076923076923
+    },
+    "refinement_stats": null
+  },
+  {
+    "image_id": "311146855_0b65fdb169.jpg",
+    "configuration": "C",
+    "target_caption": "A man and a woman in vibrant costumes pose in a street. The shirtless man wears green and yellow pants, while the woman sports a feathered headdress and a sequined outfit. Onlookers are visible in the background.",
+    "quality_metrics": {
+      "BLEU": null,
+      "METEOR": null,
+      "ROUGE_L": null,
+      "CIDEr": null,
+      "SPICE": null
+    },
+    "grounding_metrics": {
+      "unsupported_claim_rate": 0.23076923076923078,
+      "evidence_match_rate": 0.6923076923076923
+    },
+    "refinement_stats": {
+      "wasRefined": true,
+      "claimsRemoved": 3,
+      "claimsRetained": 9,
+      "uncertainHandled": 1
+    }
+  }
+]

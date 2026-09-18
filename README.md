@@ -28,6 +28,11 @@ VisionCaption+ is a specialized image-captioning platform designed to generate t
    npm install
    ```
 
+2. **Environment & Storage Setup:**
+   Ensure your `.env` is configured correctly (refer to `.env.example`).
+   Images uploaded by users are stored securely in `public/uploads`.
+   All `/api/captions/*` endpoints are protected by NextAuth session checks and an in-memory rate limiter.
+
 2. **Environment Variables:**
    Create a `.env` file from `.env.example` (or use the one already created).
 

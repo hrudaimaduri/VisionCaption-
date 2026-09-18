@@ -1,66 +1,93 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { GeminiVisionCaptionProvider } from "../src/lib/ai/gemini-provider";
 
-// Mock the entire GoogleGenAI module
-vi.mock("@google/genai", () => {
-  class MockGoogleGenAI {
-    static retryCount = 0;
-    models = {
-      generateContent: vi.fn().mockImplementation(async ({ contents }) => {
-        // Throw an error if a specific string is detected (for API failure testing)
-        const promptText = contents[0];
-
-        // Mock a stateful retry mechanism
-        if (typeof promptText === "string" && promptText.includes("RETRY_503")) {
-          // Store attempt count globally on the mock object instance or simply use a global variable
-          // For simplicity in vi.mock, use a closure variable attached to the mock
-          MockGoogleGenAI.retryCount = (MockGoogleGenAI.retryCount || 0) + 1;
-          if (MockGoogleGenAI.retryCount < 3) {
-            const error = new Error("503 Service Unavailable");
-            (error as any).status = 503;
-            throw error;
-          }
-          return { text: "Mocked Gemini Response after retry" };
-        }
-
-        if (typeof promptText === "string" && promptText.includes("THROW_ERROR")) {
-          throw new Error("Simulated API failure");
-        }
-        if (typeof promptText === "string" && promptText.includes("EMPTY_RESPONSE")) {
-          return { text: "" };
-        }
-        if (typeof promptText === "string" && promptText.includes("Analyze this image")) {
-          if (promptText.includes("THROW_ERROR")) throw new Error("Simulated API failure");
-          return { text: JSON.stringify({ objects: [{ name: "person", attributes: [] }], actions: [], relationships: [], uncertain: [] }) };
-        }
-        
-        if (typeof promptText === "string" && promptText.includes("You are a strict verification system")) {
-          if (promptText.includes("THROW_ERROR")) throw new Error("Simulated API failure");
-          return { text: JSON.stringify([{ type: "OBJECT", text: "person", status: "supported", confidence: 1.0 }]) };
-        }
-        
-        if (typeof promptText === "string" && promptText.includes("You are an image caption refinement system")) {
-          if (promptText.includes("THROW_ERROR")) throw new Error("Simulated API failure");
-          return { text: "Refined mocked caption" };
-        }
-
-        return { text: "Mocked Gemini Response" };
-      }),
-    };
-  }
-  return { GoogleGenAI: MockGoogleGenAI };
-});
-
 describe("GeminiVisionCaptionProvider", () => {
   const originalEnv = process.env;
+  const originalFetch = global.fetch;
 
   beforeEach(() => {
     vi.resetModules();
     process.env = { ...originalEnv, GEMINI_API_KEY: "test_api_key", GEMINI_MODEL: "gemini-2.5-flash" };
+    
+    // Mock global fetch for the SDK using native Response
+    let retryCount = 0;
+    global.fetch = vi.fn().mockImplementation(async (url: any, options: any) => {
+      const body = JSON.parse(options.body);
+      const contents = body.contents;
+      
+      let promptText = "";
+      if (Array.isArray(contents)) {
+        const content = contents[0];
+        if (content.parts && Array.isArray(content.parts)) {
+          promptText = content.parts.find((p: any) => p.text)?.text || "";
+        } else if (typeof content === 'string') {
+          promptText = content;
+        } else if (content.text) {
+          promptText = content.text;
+        }
+      }
+
+      const headers = new Headers({ 'Content-Type': 'application/json' });
+
+      if (promptText.includes("RETRY_503")) {
+        retryCount++;
+        if (retryCount < 3) {
+          return new Response(
+            JSON.stringify({ error: { message: "503 Service Unavailable" } }),
+            { status: 503, statusText: "Service Unavailable", headers }
+          );
+        }
+        return new Response(
+          JSON.stringify({ candidates: [{ content: { parts: [{ text: "Mocked Gemini Response after retry" }] } }] }),
+          { status: 200, headers }
+        );
+      }
+
+      if (promptText.includes("THROW_ERROR")) {
+        return new Response(
+          JSON.stringify({ error: { message: "Simulated API failure" } }),
+          { status: 500, statusText: "Internal Server Error", headers }
+        );
+      }
+      
+      if (promptText.includes("EMPTY_RESPONSE")) {
+        return new Response(
+          JSON.stringify({ candidates: [{ content: { parts: [{ text: "" }] } }] }),
+          { status: 200, headers }
+        );
+      }
+      
+      if (promptText.includes("Analyze this image")) {
+        return new Response(
+          JSON.stringify({ candidates: [{ content: { parts: [{ text: JSON.stringify({ objects: [{ name: "person", attributes: [] }], actions: [], relationships: [], uncertain: [] }) }] } }] }),
+          { status: 200, headers }
+        );
+      }
+      
+      if (promptText.includes("strict verification system")) {
+        return new Response(
+          JSON.stringify({ candidates: [{ content: { parts: [{ text: JSON.stringify([{ type: "OBJECT", text: "person", status: "supported", confidence: 1.0 }]) }] } }] }),
+          { status: 200, headers }
+        );
+      }
+      
+      if (promptText.includes("image caption refinement system")) {
+        return new Response(
+          JSON.stringify({ candidates: [{ content: { parts: [{ text: "Refined mocked caption" }] } }] }),
+          { status: 200, headers }
+        );
+      }
+
+      return new Response(
+        JSON.stringify({ candidates: [{ content: { parts: [{ text: "Mocked Gemini Response" }] } }] }),
+        { status: 200, headers }
+      );
+    });
   });
 
   afterEach(() => {
     process.env = originalEnv;
+    global.fetch = originalFetch;
   });
 
   it("should initialize successfully when GEMINI_API_KEY is present", () => {
@@ -147,6 +174,7 @@ describe("GeminiVisionCaptionProvider", () => {
     );
     expect(result).toBe("Mocked Gemini Response after retry");
   });
+
   it("should analyze image successfully", async () => {
     const provider = new GeminiVisionCaptionProvider();
     const result = await provider.analyzeImage({ imageUrl: "test", inlineData: { data: "base64", mimeType: "image/jpeg" } });
