@@ -10,14 +10,10 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
 
     return {
       objects: [
-        { label: "person", confidence: 0.98 },
-        { label: "umbrella", confidence: 0.95 },
-        { label: "road", confidence: 0.92 },
-        { label: "car", confidence: 0.75 },
-      ],
-      attributes: [
-        { object: "umbrella", attribute: "red", confidence: 0.88 },
-        { object: "road", attribute: "wet", confidence: 0.94 },
+        { name: "person", attributes: ["walking"], confidence: 0.98 },
+        { name: "umbrella", attributes: ["red"], confidence: 0.95 },
+        { name: "road", attributes: ["wet"], confidence: 0.92 },
+        { name: "car", attributes: ["speeding"], confidence: 0.75 },
       ],
       actions: [
         { subject: "person", action: "walking", confidence: 0.91 },
@@ -26,7 +22,8 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
       relationships: [
         { subject: "person", relation: "near", object: "road", confidence: 0.95 },
         { subject: "car", relation: "on", object: "road", confidence: 0.85 },
-      ]
+      ],
+      uncertain: ["speed of car", "danger level"]
     };
   }
 
@@ -74,7 +71,7 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
         claims: [{
           type: "OTHER",
           text: "No caption provided",
-          isSupported: false,
+          status: "unsupported",
           confidence: 1.0,
           reasoning: "The generation step failed to produce a caption."
         }]
@@ -87,16 +84,16 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
 
     // Check known concepts
     if (lowerCaption.includes("person") || lowerCaption.includes("వ్యక్తి")) {
-      claims.push({ type: "OBJECT" as const, text: "person", isSupported: true, confidence: 0.98 });
+      claims.push({ type: "OBJECT" as const, text: "person", status: "supported" as const, confidence: 0.98 });
     }
     if (lowerCaption.includes("umbrella") || lowerCaption.includes("గొడుగు")) {
-      claims.push({ type: "OBJECT" as const, text: "umbrella", isSupported: true, confidence: 0.95 });
+      claims.push({ type: "OBJECT" as const, text: "umbrella", status: "supported" as const, confidence: 0.95 });
     }
     if (lowerCaption.includes("red") || lowerCaption.includes("ఎర్రటి")) {
-      claims.push({ type: "ATTRIBUTE" as const, text: "red umbrella", isSupported: true, confidence: 0.88 });
+      claims.push({ type: "ATTRIBUTE" as const, text: "red umbrella", status: "supported" as const, confidence: 0.88 });
     }
     if (lowerCaption.includes("road") || lowerCaption.includes("రోడ్డు")) {
-      claims.push({ type: "OBJECT" as const, text: "road", isSupported: true, confidence: 0.92 });
+      claims.push({ type: "OBJECT" as const, text: "road", status: "supported" as const, confidence: 0.92 });
     }
 
     // Intentional unsupported claims for demo
@@ -104,7 +101,7 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
       claims.push({
         type: "ATTRIBUTE" as const,
         text: "speeding car",
-        isSupported: false,
+        status: "unsupported" as const,
         confidence: 0.2,
         reasoning: "No sufficiently reliable visual evidence detected for the speed of the car."
       });
@@ -114,7 +111,7 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
       claims.push({
         type: "ACTION" as const,
         text: "walking dangerously",
-        isSupported: false,
+        status: "unsupported" as const,
         confidence: 0.1,
         reasoning: "Hazard level is an inference not directly supported by visual evidence."
       });
@@ -124,7 +121,7 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
       claims.push({
         type: "OBJECT" as const,
         text: "child playing",
-        isSupported: false,
+        status: "unsupported" as const,
         confidence: 0.05,
         reasoning: "No sufficiently reliable visual evidence detected for a child."
       });
@@ -132,7 +129,7 @@ export class MockVisionCaptionProvider implements VisionCaptionProvider {
     }
 
     const totalClaims = claims.length || 1;
-    const supportedClaims = claims.filter(c => c.isSupported).length;
+    const supportedClaims = claims.filter(c => c.status === "supported").length;
     const overallScore = Math.round((supportedClaims / totalClaims) * 100);
 
     return {

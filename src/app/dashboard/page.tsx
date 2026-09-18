@@ -68,7 +68,10 @@ export default function WorkspacePage() {
       const analyzeRes = await fetch("/api/captions/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageUrl: "mock-url" })
+        body: JSON.stringify({ 
+          imageUrl: "mock-url",
+          inlineData 
+        })
       });
       const evidenceData = await analyzeRes.json();
       setEvidence(evidenceData);
@@ -311,15 +314,20 @@ export default function WorkspacePage() {
                         <div className="space-y-3">
                           {verification.claims.map((claim, idx) => (
                             <div key={idx} className="flex gap-2 items-start text-sm">
-                              {claim.isSupported ? (
+                              {claim.status === "supported" ? (
                                 <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                              ) : claim.status === "uncertain" ? (
+                                <AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5 shrink-0" />
                               ) : (
                                 <AlertTriangle className="h-4 w-4 text-amber-500 mt-0.5 shrink-0" />
                               )}
                               <div>
                                 <span className="font-medium">[{claim.type}] {claim.text}</span>
-                                {!claim.isSupported && (
+                                {claim.status !== "supported" && claim.reasoning && (
                                   <p className="text-xs text-amber-600/80 mt-1">{claim.reasoning}</p>
+                                )}
+                                {claim.evidence && (
+                                  <p className="text-xs text-muted-foreground mt-1 text-green-700/80">Evidence: {claim.evidence}</p>
                                 )}
                               </div>
                             </div>

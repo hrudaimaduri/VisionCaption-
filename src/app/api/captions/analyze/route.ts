@@ -3,10 +3,10 @@ import { getVisionCaptionProvider } from "@/lib/ai/provider";
 
 export async function POST(req: Request) {
   try {
-    const { imageUrl } = await req.json();
+    const { imageUrl, inlineData } = await req.json();
     const provider = getVisionCaptionProvider();
     
-    const evidence = await provider.analyzeImage({ imageUrl });
+    const evidence = await provider.analyzeImage({ imageUrl, inlineData });
     
     return NextResponse.json(evidence);
   } catch (error) {

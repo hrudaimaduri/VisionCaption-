@@ -29,6 +29,21 @@ vi.mock("@google/genai", () => {
         if (typeof promptText === "string" && promptText.includes("EMPTY_RESPONSE")) {
           return { text: "" };
         }
+        if (typeof promptText === "string" && promptText.includes("Analyze this image")) {
+          if (promptText.includes("THROW_ERROR")) throw new Error("Simulated API failure");
+          return { text: JSON.stringify({ objects: [{ name: "person", attributes: [] }], actions: [], relationships: [], uncertain: [] }) };
+        }
+        
+        if (typeof promptText === "string" && promptText.includes("You are a strict verification system")) {
+          if (promptText.includes("THROW_ERROR")) throw new Error("Simulated API failure");
+          return { text: JSON.stringify([{ type: "OBJECT", text: "person", status: "supported", confidence: 1.0 }]) };
+        }
+        
+        if (typeof promptText === "string" && promptText.includes("You are an image caption refinement system")) {
+          if (promptText.includes("THROW_ERROR")) throw new Error("Simulated API failure");
+          return { text: "Refined mocked caption" };
+        }
+
         return { text: "Mocked Gemini Response" };
       }),
     };
@@ -131,5 +146,24 @@ describe("GeminiVisionCaptionProvider", () => {
       { objects: [], attributes: [], actions: [], relationships: [] }
     );
     expect(result).toBe("Mocked Gemini Response after retry");
+  });
+  it("should analyze image successfully", async () => {
+    const provider = new GeminiVisionCaptionProvider();
+    const result = await provider.analyzeImage({ imageUrl: "test", inlineData: { data: "base64", mimeType: "image/jpeg" } });
+    expect(result.objects[0].name).toBe("person");
+  });
+
+  it("should verify caption successfully", async () => {
+    const provider = new GeminiVisionCaptionProvider();
+    const result = await provider.verifyCaption({ caption: "A person", evidence: { objects: [], attributes: [], actions: [], relationships: [] } });
+    expect(result.claims[0].status).toBe("supported");
+    expect(result.overallScore).toBe(100);
+  });
+
+  it("should refine caption successfully", async () => {
+    const provider = new GeminiVisionCaptionProvider();
+    const verification = { overallScore: 50, unsupportedClaims: 1, uncertainClaims: 0, claims: [] };
+    const result = await provider.refineCaption({ caption: "A person flying", verification, evidence: { objects: [], attributes: [], actions: [], relationships: [] }, language: "English" });
+    expect(result).toBe("Refined mocked caption");
   });
 });

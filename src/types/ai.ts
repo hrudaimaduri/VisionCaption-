@@ -1,32 +1,30 @@
 export interface VisualEvidence {
   objects: Array<{
-    label: string;
-    confidence: number;
-    bbox?: [number, number, number, number];
-  }>;
-  attributes: Array<{
-    object: string;
-    attribute: string;
-    confidence: number;
+    name: string;
+    attributes: string[];
+    confidence?: number;
   }>;
   actions: Array<{
     subject: string;
     action: string;
-    confidence: number;
+    confidence?: number;
   }>;
   relationships: Array<{
     subject: string;
     relation: string;
     object: string;
-    confidence: number;
+    confidence?: number;
   }>;
+  uncertain?: string[];
+  [key: string]: any; // extensible
 }
 
 export interface VerificationClaim {
-  type: 'OBJECT' | 'ATTRIBUTE' | 'ACTION' | 'RELATIONSHIP' | 'OTHER';
+  type: 'OBJECT' | 'ATTRIBUTE' | 'ACTION' | 'RELATIONSHIP' | 'SCENE' | 'OTHER';
   text: string;
-  isSupported: boolean;
+  status: 'supported' | 'uncertain' | 'unsupported';
   confidence: number;
+  evidence?: string;
   reasoning?: string;
 }
 
@@ -49,7 +47,7 @@ export interface GenerationInput {
 }
 
 export interface VisionCaptionProvider {
-  analyzeImage(input: { imageUrl: string }): Promise<VisualEvidence>;
+  analyzeImage(input: { imageUrl: string; inlineData?: { data: string; mimeType: string } }): Promise<VisualEvidence>;
   generateCaption(input: GenerationInput, evidence: VisualEvidence): Promise<string>;
   verifyCaption(input: { caption: string; evidence: VisualEvidence }): Promise<VerificationResult>;
   refineCaption(input: { caption: string; verification: VerificationResult; evidence: VisualEvidence; language: string }): Promise<string>;
