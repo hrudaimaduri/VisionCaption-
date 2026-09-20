@@ -7,7 +7,7 @@ VisionCaption+ is a specialized image-captioning platform designed to generate t
 ## Architecture
 
 - **Frontend/Backend:** Next.js (App Router), React, TypeScript, Tailwind CSS
-- **Database:** PostgreSQL (via Prisma ORM) *Note: SQLite is currently configured in Prisma to enable running the application in constrained environments without Docker/PostgreSQL.*
+- **Database:** PostgreSQL (via Prisma ORM) *Note: PostgreSQL is the active database for both local development and production.*
 - **Authentication:** NextAuth.js (Credentials Provider)
 - **AI Integration:** Abstracted `VisionCaptionProvider` (Mock provider active by default for development/demo).
 
@@ -37,17 +37,11 @@ VisionCaption+ is a specialized image-captioning platform designed to generate t
    Create a `.env` file from `.env.example` (or use the one already created).
 
 3. **Database:**
-   To run with Docker + Postgres (Optional):
+   Local development requires PostgreSQL. Ensure `DATABASE_URL` in `.env` points to your PostgreSQL instance.
+   Prisma migrations are stored in `prisma/migrations/`.
+   For new environments, apply the migrations using:
    ```bash
-   docker-compose up -d
-   # Change Prisma provider in schema.prisma to postgresql and update DATABASE_URL
-   npx prisma db push
-   ```
-
-   To run with the default SQLite setup (No Docker needed):
-   ```bash
-   # Ensure schema.prisma has provider = "sqlite"
-   npx prisma db push
+   npx prisma migrate deploy
    ```
 
 4. **Start the application:**
