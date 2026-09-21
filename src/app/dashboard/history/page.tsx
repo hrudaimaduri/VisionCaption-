@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CheckCircle2, AlertTriangle, ChevronRight, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
@@ -5,7 +6,7 @@ import { prisma } from "@/lib/db";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+
 
 export default async function HistoryPage() {
   const session = await getServerSession(authOptions);
@@ -45,11 +46,10 @@ export default async function HistoryPage() {
               {/* Image Thumbnail */}
               <div className="bg-muted flex items-center justify-center p-4 border-r relative min-h-[200px]">
                 {item.image?.url ? (
-                  <Image 
+                  <img 
                     src={item.image.url} 
                     alt="Uploaded image" 
-                    fill 
-                    className="object-cover" 
+                    className="absolute inset-0 w-full h-full object-cover" 
                   />
                 ) : (
                   <ImageIcon className="text-muted-foreground/50 h-12 w-12" />
